@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index page</title>
+</head>
+<body bgcolor="LightGray">
+<h2>Shield BI User Interface</h2>
+<div class="dropdown">
+    <h5>Product Ranking for the month</h5>
+    <form action="http://127.0.0.1:8000/index/primary_sales/prm/" method="post"> <select name="month" value=''>Select Month</option>
+        <option value='Apr-19'>April</option>
+        <option value='May-19'>May</option>
+        <option value='Jun-19'>June</option>
+        <option value='Jul-19'>July</option>
+        <option value='Aug-19'>August</option>
+        <option value='Sep-19'>September</option>
+        <option value='Oct-19'>October</option>
+
+        </select>
+    {% csrf_token %}
+
+    <input type="submit">
+    <br><br>
+    </form>
+
+<div class="dropdown">
+    <h5>Cumulative Unit sale for the Product</h5>
+    <form action="http://127.0.0.1:8000/index/primary_sales/cup/" method="post">
+        {% csrf_token %}
+<!--        <br>-->
+<h4>Products</h4>
+<select name="prod">
+    {% for prod in prods %}
+    <option value="{{prod}}" selected="selected">{{prod}} </option>
+    {% endfor %}
+</select>
+        <input type="submit">
+
+    <br><br>
+    </form>
+
+
+    <h5>Cumulative Value sale for the Product</h5>
+    <form action="http://127.0.0.1:8000/index/primary_sales/cvp/" method="post">
+        {% csrf_token %}
+<!--        <br>-->
+<h4>Products</h4>
+<select name="prod">
+    {% for prod in prods %}
+    <option value="{{prod}}" selected="selected">{{prod}} </option>
+    {% endfor %}
+</select>
+        <input type="submit">
+
+    <br><br>
+    </form>
+
+
+<div class="dropdown">
+    <h5>% sale of product for the month</h5>
+    <form action="http://127.0.0.1:8000/index/primary_sales/spm/" method="post"> <select name="month" value=''>Select Month</option>
+        <option value='Apr-19'>April</option>
+        <option value='May-19'>May</option>
+        <option value='Jun-19'>June</option>
+        <option value='Jul-19'>July</option>
+        <option value='Aug-19'>August</option>
+        <option value='Sep-19'>September</option>
+        <option value='Oct-19'>October</option>
+
+        </select>
+        {% csrf_token %}
+        <input type="submit">
+
+    <br><br>
+    </form>
+
+
+    <h5>Monthly Sales trend and Growth (Units)</h5>
+    <h4>All Products</h4>
+
+    <form action="http://127.0.0.1:8000/index/primary_sales/msgu/" method="post"> <select name="month" value=''>Select Month</option>
+
+        <option value='Apr-19'>April</option>
+        <option value='May-19'>May</option>
+        <option value='Jun-19'>June</option>
+        <option value='Jul-19'>July</option>
+        <option value='Aug-19'>August</option>
+        <option value='Sep-19'>September</option>
+        <option value='Oct-19'>October</option>
+        </select>
+
+        {% csrf_token %}
+<!--        <br>-->
+
+        <input type="submit">
+
+    <br><br>
+    </form>
+
+
+<h5>Monthly Sales trend and Growth (Value)</h5>
+    <h4>All Products</h4>
+
+    <form action="http://127.0.0.1:8000/index/primary_sales/msgv/" method="post">  <select name="month" value=''>Select Month</option>
+
+        <option value='Apr-19'>April</option>
+        <option value='May-19'>May</option>
+        <option value='Jun-19'>June</option>
+        <option value='Jul-19'>July</option>
+        <option value='Aug-19'>August</option>
+        <option value='Sep-19'>September</option>
+        <option value='Oct-19'>October</option>
+        </select>
+
+        {% csrf_token %}
+<!--        <br>-->
+
+        <input type="submit">
+
+    <br><br>
+    </form>
+
+<h5>Daily Sales trend and Growth (Value)</h5>
+    <h4>Evacare Products</h4>
+
+    <form action="http://127.0.0.1:8000/index/primary_sales/dsv/" method="post">
+
+        {% csrf_token %}
+<!--        <br>-->
+
+        <input type="submit">
+
+    <br><br>
+    </form>
+
+    <h5>Daily Sales trend and Growth (Units)</h5>
+    <h4>Evacare Products</h4>
+
+    <form action="http://127.0.0.1:8000/index/primary_sales/dsu/" method="post">
+
+        {% csrf_token %}
+<!--        <br>-->
+
+        <input type="submit">
+
+    <br><br>
+    </form>
+<!--  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><br>-->
+
+<!--    <a class="dropdown-item" href="http://127.0.0.1:8000/index/primary_sales/graph">-> Daily Sales trend and Growth (Units)</a>-->
+<!--     <tr><td  align=left  >-->
+
+<!--<select name=month value=''>Select Month</option>-->
+<!--<option value='01'>January</option>-->
+<!--<option value='02'>February</option>-->
+<!--<option value='03'>March</option>-->
+<!--<option value='04'>April</option>-->
+<!--<option value='05'>May</option>-->
+<!--<option value='06'>June</option>-->
+<!--<option value='07'>July</option>-->
+<!--<option value='08'>August</option>-->
+<!--<option value='09'>September</option>-->
+<!--<option value='10'>October</option>-->
+<!--<option value='11'>November</option>-->
+<!--<option value='12'>December</option>-->
+<!--</select><br><br>-->
+
+<!--    <a class="dropdown-item" href="#">-> Daily Sales trend and Growth (Value)</a>-->
+<!--   <tr><td  align=left  >-->
+
+<!--<select name=month value=''>Select Month</option>-->
+<!--<option value='01'>January</option>-->
+<!--<option value='02'>February</option>-->
+<!--<option value='03'>March</option>-->
+<!--<option value='04'>April</option>-->
+<!--<option value='05'>May</option>-->
+<!--<option value='06'>June</option>-->
+<!--<option value='07'>July</option>-->
+<!--<option value='08'>August</option>-->
+<!--<option value='09'>September</option>-->
+<!--<option value='10'>October</option>-->
+<!--<option value='11'>November</option>-->
+<!--<option value='12'>December</option>-->
+<!--</select><br><br>-->
+
+<!--    <a class="dropdown-item" href="#">-> Monthly Sales trend and Growth (Units)</a><br><br>-->
+
+<!--    <a class="dropdown-item" href="#">-> Monthly Sales trend and Growth (Value)</a><br><br>-->
+
+<!--    <a class="dropdown-item" href="#">-> Product Ranking for the month</a>-->
+<!--      <tr><td  align=left  >-->
+
+<!--<select name=month value=''>Select Month</option>-->
+<!--<option value='01'>January</option>-->
+<!--<option value='02'>February</option>-->
+<!--<option value='03'>March</option>-->
+<!--<option value='04'>April</option>-->
+<!--<option value='05'>May</option>-->
+<!--<option value='06'>June</option>-->
+<!--<option value='07'>July</option>-->
+<!--<option value='08'>August</option>-->
+<!--<option value='09'>September</option>-->
+<!--<option value='10'>October</option>-->
+<!--<option value='11'>November</option>-->
+<!--<option value='12'>December</option>-->
+<!--</select><br><br>-->
+
+<!--    <a class="dropdown-item" href="#">-> Cumulative Unit sale for the Product</a><br><br>-->
+
+<!--    <a class="dropdown-item" href="#">-> Cumulative Value sale for the Product</a><br><br>-->
+
+<!--    <a class="dropdown-item" href="#">-> % sale of product for the month</a>-->
+<!--      <tr><td  align=left  >-->
+
+<!--<select name=month value=''>Select Month</option>-->
+<!--<option value='01'>January</option>-->
+<!--<option value='02'>February</option>-->
+<!--<option value='03'>March</option>-->
+<!--<option value='04'>April</option>-->
+<!--<option value='05'>May</option>-->
+<!--<option value='06'>June</option>-->
+<!--<option value='07'>July</option>-->
+<!--<option value='08'>August</option>-->
+<!--<option value='09'>September</option>-->
+<!--<option value='10'>October</option>-->
+<!--<option value='11'>November</option>-->
+<!--<option value='12'>December</option>-->
+<!--</select>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+
+<!--&lt;!&ndash;<form action="action_page.php" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="imgcontainer">&ndash;&gt;-->
+<!--&lt;!&ndash;    <img src="img_avatar2.png" alt="Avatar" class="avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;  <div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="uname"><b>Username</b></label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" placeholder="Enter Username" name="uname" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <label for="psw"><b>Password</b></label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="password" placeholder="Enter Password" name="psw" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <button type="submit">Login</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <label>&ndash;&gt;-->
+<!--&lt;!&ndash;      <input type="checkbox" checked="checked" name="remember"> Remember me&ndash;&gt;-->
+<!--&lt;!&ndash;    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;  <div class="container" style="background-color:#00FFFF">&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="button" class="cancelbtn">Cancel</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <span class="psw">Forgot <a href="#">password?</a></span>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
