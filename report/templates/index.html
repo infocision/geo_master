@@ -4,24 +4,23 @@
     <title>Shield BI User Interface</title>
 </head>
 {% load static %}
-<body bgcolor="LightGray">
+<body>
 
 <div class="imgcontainer">
-            <img src="{% static "D:/geo_master/static/logo.png" %}" />
+            <img src="{% static "D:/geo_master/static/logo.png" %}" height="120" width="250"/><img src="{% static "D:/geo_master/static/clogo.png" %}" align="right" height="100" width="200" />
         </div>
-<h4>Welcome Shield BI </h4>
+<h4>Welcome...{{ usr }}!! </h4>
 
-<a href="http://127.0.0.1:8000/index/primary_sales">->  1) My Primary Sales</a> &nbsp &nbsp <a href="http://127.0.0.1:8000/index/primary_sales">2) My Teams Primary Sales</a>
+<a href="http://127.0.0.1:8000/index/primary_sales">-> My Primary Sales</a><br><br>
 
-<br><br>
-
-<a href="#">-> 1) My Secondary Sales</a>&nbsp &nbsp <a href="#">2) My Teams Secondary Sales</a><br><br>
+<a href="#">-> My Secondary Sales</a><br><br>
 
 <a class="dropdown-item" href="#">-> Physicians Sale</a><br><br>
 
-<a class="dropdown-item" href="#">->Breakage Expiry</a><br><br>
+<a class="dropdown-item" href="#">-> Breakage Expiry</a><br><br>
 
 <a class="dropdown-item" href="#">-> Stockist Dashboard</a><br><br>
+
 
 </body>
 </html>

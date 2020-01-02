@@ -15,15 +15,16 @@ def index(request):
     cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
     data1 = pd.read_sql('select * from organogram_geo_master', cnx)
 
+
     # if True in list(data1['1st Reporting User Name'].isin(usr)) and pwd == 'pass@123':
     #     return render(request, 'index.html')
     # else:
     #     return HttpResponse("Invalid credential please enter correct username and password")
 
     if True in list(data1['1st Reporting User Name'].isin(usr)) and pwd == 'pass@123':
-        return render(request, 'index.html')
+        return render(request, 'index.html', {"usr":usr})
     elif True in list(data1['2nd Reporting User Name'].isin(usr)) and pwd == 'pass@123':
-        return render(request, 'index.html')
+        return render(request, 'index.html', {"usr":usr})
     else:
         return HttpResponse("Invalid credential please enter correct username and password")
 
@@ -48,6 +49,7 @@ def primary_sales(request):
     return render(request, 'month.html', {"prods":prods})
 
 def prm(request):
+    # prod = request.POST['prod']
     mnth = request.POST['month']
     usr = curr_usr['usr_nm'][0]
 
@@ -101,21 +103,32 @@ def prm(request):
     frames = [table1, table2, table3, table4, table5, table6, table7]
     result = pd.concat(frames, sort=True)
 
-    p1 = result[result['PRODUCT NAMAE'] == 'APCOD']  # product need to be soft coded
-    month = p1[p1['MONTH'] == mnth]  # product need to be soft coded
+    frames = [table1, table2, table3, table4, table5, table6, table7]
+    result = pd.concat(frames, sort=True)
 
-    val = month[month['DEPOT NAME'] == c]['SAL QTY']
-    val = list(val)
-    c_list = []
-    c_list.append(c)
+    result = result[result['DIVISION'] == 'EVACARE']
 
-    df = pd.DataFrame(val)
-    df.plot(kind="bar")
-    xlocs = [i + 1 for i in range(0, 5)]
-    for i, v in enumerate(val):
-        plt.text(xlocs[i] - 1, v + 0.1, str(v))
-    plt.title(c+" "+str(mnth))
-    plt.xlabel("C & F")
+    months = result['PRODUCT NAMAE']
+    months.dropna(inplace=True)
+    month = months.unique()
+
+    p1 = result[result['MONTH'] == mnth]  # neet to be soft coded
+    p1 = p1[p1['DEPOT NAME'] == c]
+    p1 = p1[['SAL QTY', 'PRODUCT NAMAE']]
+
+    mdict = {}
+    for i in range(len(p1["PRODUCT NAMAE"])):
+        a = mdict[p1.iloc[i]["PRODUCT NAMAE"]] = p1.iloc[i]["SAL QTY"]
+
+    df = pd.DataFrame(index=[''], data=mdict)
+    ax = df.plot.bar()
+
+    plt.title(c)
+    plt.ylabel("QTY")
+
+    plt.legend(bbox_to_anchor=(0.75,0.5), loc='center left')
+
+    plt.title(c + " " + str(mnth))
     plt.ylabel("SAL QTY")
 
     # plt.show()
@@ -180,7 +193,7 @@ def spm(request):
 
     result = result[result['DIVISION'] == 'EVACARE']
     cochin = result[result['DEPOT NAME'] == c]
-    oct = cochin[cochin['MONTH'] == 'Apr-19']  # need to be option on ui side
+    oct = cochin[cochin['MONTH'] == mnth]  # need to be option on ui side
     val = oct['SAL VAL']
 
     prod = list(oct['PRODUCT NAMAE'])
@@ -193,12 +206,12 @@ def spm(request):
 
         return my_autopct
 
-    plt.title('sales value', bbox={'facecolor': '0.5', 'pad': 4})
+    plt.title('Sales Value'+' '+mnth, bbox={'facecolor':'0.9', 'pad':3})
 
     plt.pie(val, autopct=make_autopct(val), radius=1.1, startangle=60,
             pctdistance=1.3, labeldistance=1.5)
     plt.legend(prod, fontsize=10, loc=(1.3, 0.3))
-    # plt.show()
+
     plt.savefig('D:\geo_master\static\SPM.png')
     return render(request, 'graph2.html')
 
@@ -274,18 +287,18 @@ def cup(request):
         mdict[p1.iloc[i]["MONTH"]] = p1.iloc[i]["SAL QTY"]
     print(mdict)
 
-    df = pd.DataFrame(index=[str(c)], data=mdict)
+    df = pd.DataFrame(index=[''], data=mdict)
     ax = df.plot.barh(stacked=True)
 
-    plt.title(c)
-    plt.ylabel("city")
+    plt.title(c+' '+str(prod))
     plt.xlabel("SAL QTY")
 
-    plt.legend(bbox_to_anchor=(1.01, 0.5), loc='center left')
+    plt.legend(bbox_to_anchor=(0.80,0.95), loc='center left')
     # plt.show()
-    plt.savefig('D:\geo_master\static\cup.png', dpi = 150)
-
+    # plt.figure(figsize=(80,50))
+    plt.savefig('D:\geo_master\static\cup.png')
     return render(request, 'graph3.html')
+
 
 def cvp(request):
     prod = request.POST['prod']
@@ -297,8 +310,6 @@ def cvp(request):
     data2 = pd.read_sql('select * from masterstockiest', cnx)
     data3 = pd.read_sql('select * from shield_cnf_stockist', cnx)
 
-    # user_details = data1[data1['1st Reporting User Name'] == usr]
-    # div_val = user_details.iloc[0]["Division_Values"]
     abm_df = data1[data1['1st Reporting Region Name'].str.contains('ABM')]
     abm = list(abm_df['1st Reporting User Name'])
 
@@ -330,8 +341,6 @@ def cvp(request):
     c = list(consigne_set)[0]
 
     # --------------------------------------abm
-    from matplotlib.pyplot import figure
-    figure(num=None, figsize=(10, 4), dpi=50, facecolor='w', edgecolor='k')
 
     cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
 
@@ -355,22 +364,20 @@ def cvp(request):
     for i in range(len(p1["MONTH"])):
         a = mdict[p1.iloc[i]["MONTH"]] = p1.iloc[i]["SAL VAL"]
 
-    df = pd.DataFrame(index=[str(c)], data=mdict)
+    df = pd.DataFrame(index=[''], data=mdict)
     ax = df.plot.barh(stacked=True)
 
     plt.title(c+' '+str(prod))
-    plt.ylabel("city")
     plt.xlabel("SAL VAL")
 
-    plt.legend(bbox_to_anchor=(1.01, 0.5), loc='center left')
-    # plt.show()
-    plt.savefig('D:\geo_master\static\cvp.png')
 
+    plt.legend(bbox_to_anchor=(0.80,0.95), loc='center left')
+    plt.savefig('D:\geo_master\static\cvp.png')
     return render(request, 'graph4.html')
 
 
 def msgu(request):
-    mnth = request.POST['month']
+    # mnth = request.POST['month']
     usr = curr_usr['usr_nm'][0]
 
     cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
@@ -444,7 +451,7 @@ def msgu(request):
 
 
 def msgv(request):
-    mnth = request.POST['month']
+    # mnth = request.POST['month']
     usr = curr_usr['usr_nm'][0]
 
     cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
@@ -515,7 +522,7 @@ def msgv(request):
     return render(request, 'graph6.html')
 
 def dsv(request):
-    # mnth = request.POST['month']
+    mnth = request.POST['month']
     usr = curr_usr['usr_nm'][0]
 
     cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
@@ -556,19 +563,21 @@ def dsv(request):
 
     c = list(consigne_set)[0]
 
-    cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
+    # cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
+    #
+    # table1 = pd.read_sql('select * from daily_shield16', cnx)
+    # table2 = pd.read_sql('select * from daily_shield20', cnx)
+    # table3 = pd.read_sql('select * from daily_shield26', cnx)
+    # table4 = pd.read_sql('select * from daily_shield29', cnx)
+    # table5 = pd.read_sql('select * from daily_shield30', cnx)
+    # table6 = pd.read_sql('select * from daily_shield_only21', cnx)
+    # table7 = pd.read_sql('select * from daily_shield9', cnx)
+    # table8 = pd.read_sql('select * from daily_shield30_half', cnx)
+    #
+    # frames = [table1, table3, table4, table5, table6, table7, table8]
+    # result = pd.concat(frames, sort=True)
 
-    table1 = pd.read_sql('select * from daily_shield16', cnx)
-    table2 = pd.read_sql('select * from daily_shield20', cnx)
-    table3 = pd.read_sql('select * from daily_shield26', cnx)
-    table4 = pd.read_sql('select * from daily_shield29', cnx)
-    table5 = pd.read_sql('select * from daily_shield30', cnx)
-    table6 = pd.read_sql('select * from daily_shield_only21', cnx)
-    table7 = pd.read_sql('select * from daily_shield9', cnx)
-    table8 = pd.read_sql('select * from daily_shield30_half', cnx)
-
-    frames = [table1, table3, table4, table5, table6, table7, table8]
-    result = pd.concat(frames, sort=True)
+    result = pd.read_csv('D:/db_sales/shield/daily_shield/daily_shield_sale.csv')
 
     result1 = result[result['Item Division'] == "EVACARE"]
 
@@ -582,9 +591,9 @@ def dsv(request):
     fig, ax = plt.subplots(figsize=(15, 7))
 
     test.groupby(['Doc Date', 'Item Name FINAL']).sum()['Taxable Amt'].unstack().plot(ax=ax)
-    ax.set_xlabel('MONTH')
+    ax.set_xlabel('Date')
     ax.set_ylabel('Sale Value')
-    ax.set_title(c)
+    ax.set_title(c+' Nov-19')
 
     fig.autofmt_xdate()
 
@@ -593,7 +602,7 @@ def dsv(request):
     return render(request, 'graph7.html')
 
 def dsu(request):
-    # mnth = request.POST['month']
+    mnth = request.POST['month']
     usr = curr_usr['usr_nm'][0]
 
     cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
@@ -634,20 +643,21 @@ def dsu(request):
 
     c = list(consigne_set)[0]
 
-    cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
+    # cnx = pymysql.connect('localhost', 'root', 'root', 'nutri_db')
+    #
+    # table1 = pd.read_sql('select * from daily_shield16', cnx)
+    # table2 = pd.read_sql('select * from daily_shield20', cnx)
+    # table3 = pd.read_sql('select * from daily_shield26', cnx)
+    # table4 = pd.read_sql('select * from daily_shield29', cnx)
+    # table5 = pd.read_sql('select * from daily_shield30', cnx)
+    # table6 = pd.read_sql('select * from daily_shield_only21', cnx)
+    # table7 = pd.read_sql('select * from daily_shield9', cnx)
+    # table8 = pd.read_sql('select * from daily_shield30_half', cnx)
+    #
+    # frames = [table1, table3, table4, table5, table6, table7, table8]
+    # result = pd.concat(frames, sort=True)
 
-    table1 = pd.read_sql('select * from daily_shield16', cnx)
-    table2 = pd.read_sql('select * from daily_shield20', cnx)
-    table3 = pd.read_sql('select * from daily_shield26', cnx)
-    table4 = pd.read_sql('select * from daily_shield29', cnx)
-    table5 = pd.read_sql('select * from daily_shield30', cnx)
-    table6 = pd.read_sql('select * from daily_shield_only21', cnx)
-    table7 = pd.read_sql('select * from daily_shield9', cnx)
-    table8 = pd.read_sql('select * from daily_shield30_half', cnx)
-
-    frames = [table1, table3, table4, table5, table6, table7, table8]
-    result = pd.concat(frames, sort=True)
-
+    result = pd.read_csv('D:/db_sales/shield/daily_shield/daily_shield_sale.csv')
     result1 = result[result['Item Division'] == "EVACARE"]
 
     test = result1[result1['Consignee'] == c]
@@ -660,9 +670,9 @@ def dsu(request):
 
     test.groupby(['Doc Date', 'Item Name FINAL']).sum()['Qty.'].unstack().plot(ax=ax)
 
-    ax.set_xlabel('MONTH')
+    ax.set_xlabel('Date')
     ax.set_ylabel('Sale Qty')
-    ax.set_title(c)
+    ax.set_title(c+' Nov-19')
     plt.legend(bbox_to_anchor=(1.01, 0.5), loc='center left')
     plt.savefig('D:\geo_master\static\dsu.png')
     return render(request, 'graph8.html')

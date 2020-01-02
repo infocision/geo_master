@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0be57268-9301-4206-b62c-f8fa3f765006" name="Default Changelist" comment="" />
+    <list default="true" id="0be57268-9301-4206-b62c-f8fa3f765006" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/graph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/graph2.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/graph2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/graph3.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/graph3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/graph4.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/graph4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/graph5.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/graph5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/graph6.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/graph6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/graph7.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/graph7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/graph8.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/graph8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/templates/month.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/templates/month.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/report/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/PRM.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/PRM.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/SPM.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/SPM.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/cup.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/cup.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/cvp.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/cvp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/dsu.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/dsu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/dsv.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/dsv.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/msgu.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/msgu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/msgv.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/msgv.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,10 +236,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1577771486111" />
-    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1577760007195">
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1577909624769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1577760007195" />
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1577909624769" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1577041351718">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
