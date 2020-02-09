@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+</head>
+{% load static %}
+<style>
+    /*set border to the form*/
+
+    form {
+        border: 3px solid #f1f1f1;
+    }
+    /*assign full width inputs*/
+
+    input[type=text],
+    input[type=password] {
+        width: 30%;
+        padding: 8px 10px;
+        margin: 4px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    /*set a style for the buttons*/
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 7px 10px;
+        margin: 4px 0;
+        border: none;
+        cursor: pointer;
+        width: 10%;
+    }
+    /* set a hover effect for the button*/
+
+    button:hover {
+        opacity: 0.8;
+    }
+    /*set extra style for the cancel button*/
+
+    .cancelbtn {
+        width: auto;
+        padding: 4px 8px;
+        background-color: #f44336;
+    }
+    /*centre the display image inside the container*/
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+    /*set image properties*/
+
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
+    /*set padding to the container*/
+
+    .container {
+        padding: 16px;
+    }
+    /*set the forgot password text*/
+
+    span.psw {
+        float: right;
+        padding-top: 10px;
+    }
+    /*set styles for span and cancel button on small screens*/
+
+    @media screen and (max-width: 100px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+        .cancelbtn {
+            width: 80%;
+        }
+    }
+</style>
+
+<body id="'top" class>
+<form action="http://127.0.0.1:8000/index/dashboard/" method="post">
+{% csrf_token %}
+    <br><br>
+        <div>
+            <img src="{% static "D:/geo_master/static/Hidoctor.png" %}" align="left" height="50" width="80" />
+        </div>
+<div>
+            <img src="{% static "D:/geo_master/static/logo.png" %}" align="center" height="150" width="250" />
+        </div>
+
+    <div>
+            <img src="{% static "D:/geo_master/static/mobile.jpg" %}"  align="right" height="400" width="250"  />
+        </div><br><br>
+
+
+  <div class="container" align="left">
+            <label><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="user_name" required><br>
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required><br><br>
+      <div>
+    <label>Please Enter Username and Password</label>
+    </div>
+
+            <button type="submit">Sign in</button>
+            <input type="checkbox" checked="checked"> Remember me
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+
+
+
+   <div id="footer" class="clearfix">
+        <div style="float: left">
+            <img src="{% static "D:/geo_master/static/Logo_SwaaS.gif" %}"/>
+        </div>
+        <div style="float: left; margin-top: 6px;">
+           © 2019 SwaaS. All rights reserved. 14.4.4<br>
+           Site best viewed in Chrome at 1024x768 pixels resolution.
+        </div>
+        <div style="float: right">
+            <img src="{% static "D:/geo_master/static/hi-doctor-logo.png" %}" />
+        </div>
+    </div>
+
+
+    <div style="padding: 5px 15px 0px 15px;">
+                                <img src="/Images/user.png">
+                            </div>
+
+    <div style="width: 100%;" class="clearfix">
+                        <div style="padding: 0px 10px;text-align: right;">
+                            <img src="D:/geo_master/static/HiDOCTOR_Genie_200x50.png" onclick="fnOpenHiDoctorGenie()" id="dvGenieHelp">
+                            <input type="hidden" id="hdnHomeDocCode">
+                            <input type="hidden" id="hdnEmailId">
+                        </div>
+                    </div>
+                    <div style="width: 100%;text-align: right;" class="clearfix">
+                        <span style="padding: 0px 15px;">SwaaS Help: +91 90254-07475 (or) <a href="mailto:support@swaas.net">support@swaas.net</a></span>
+                    </div>
+
+
+
+</form>
+</body>
+</html>
+

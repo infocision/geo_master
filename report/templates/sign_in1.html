@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<form action="http://127.0.0.1:8000/index/Dashboard/" method="post">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <title>HiDOCTOR Welcomes you!</title>
+    <link href="https://shield.hidoctor.me/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <meta name="viewport" content="width=device-width">
+	
+    <link href="./fairshare_sign_in/font-awesome.min.css" rel="stylesheet">
+    
+</head>
+{% load static %}
+<body>    
+<link href="./fairshare_sign_in/Splashscreen.css" rel="stylesheet">
+<link href="./fairshare_sign_in/style1.css" rel="stylesheet">
+
+
+<form action="http://127.0.0.1:8000/index/Dashboard/" method="post">
+                     
+ <div class="container">
+
+    <div id="dvLogin">
+        <div style="width: 100%;">
+            <div style="width: 100%; border-bottom: 1px solid #f2f2f2; height: 80px;">
+                <div style="width: 50%; float: right; height: 80px;">
+                    <img src="./fairshare_sign_in/shield.hidoctor.me.jpg" onerror="imgError(this)" id="imgClientLogo" style="float: right;">
+                </div>
+				 <div style="width: 50%; float: left;">
+                    <img src="./fairshare_sign_in/Hidoctor.png">
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+            <div style="width: 100%; clear: both;">
+
+                <div style="width: 50%; float: left;">
+                    <div style="width: 100%; margin-left: 15%;">
+                        <img src="./fairshare_sign_in/mobile.jpg">
+                    </div>
+                    <div style="width: 100%; margin-left: 20%; margin-bottom: 10%;">
+                        <span style="color: #505050; font-size: 22px;">
+                            For details, contact support<br>
+                        </span>
+                        <span style="font-size: 18px">☎</span>
+                        <b>+91 9029010234</b> &nbsp;<span style="font-size: 18px">✉</span>
+                        <a href="mailto:support@swaas.net"><b>info@infocision.in</b></a>
+                    </div>
+                    <div style="width: 30%; float: left; color: #5f7aff;">
+                    </div>
+                </div>
+                <div style="width: 50%; float: left; margin-top: 8%;">
+                    <table>
+
+                        <tbody><tr><td colspan="2">
+                            <span style="font-size: 18px; font-weight: bold;">Sign in</span>
+                            <br>
+                            <input type="text" placeholder="User Name" id="txtUserName" style="width: 300px !important">
+                        </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="password" placeholder="Password" style="width: 300px !important" id="txtPassWord">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">
+                                <input type="checkbox" id="chkRememberme"><span>Remember me</span>
+                            </td>
+                            <td>
+                                <div style="float: right;">
+                                    <input type="button" class="btn primary" value="Sign in" style="float: right;" id="btnLogin" onclick="fnSubmit();"><img src="./HiDOCTOR Welcomes you!_files/load.gif" style="display: none; float: right;" id="imgloginLoad"><br>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <span style="color: #C63828; float: right;display: flex;width: 310px;position: relative;" id="spnError"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                
+                                
+
+                                <a href="https://shield.hidoctor.me/#" onclick="fnforgotpassword()">Forgot password?</a>
+
+                            </td>
+                        </tr>
+                        
+                    </tbody></table>
+                    <!-- <div id="bro_Error_msg" style="">
+                        <p>Site best viewed in Chrome at 1024x768 pixels resolution.</p>
+                    </div> -->
+                </div>
+
+            </div>
+           
+    </div>
+</div>
+{% csrf_token %}
+</div></form></body></html>
